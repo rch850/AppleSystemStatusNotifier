@@ -18,12 +18,17 @@ chrome.runtime.onInstalled.addListener(function(details) {
   chrome.browserAction.setBadgeBackgroundColor({ "color": "#999" });
   chrome.browserAction.setBadgeText({ "text": "?" });
   chrome.alarms.create("refresh", {"periodInMinutes": 10});
-  load();
-});
 
-chrome.alarms.onAlarm.addListener(function(alarm) {
-  if (alarm.name === "refresh") {
-    load();
-  }
+  chrome.browserAction.onClicked.addListener(function() {
+    chrome.tabs.create({url: "http://www.apple.com/support/systemstatus/"});
+  });
+
+  chrome.alarms.onAlarm.addListener(function(alarm) {
+    if (alarm.name === "refresh") {
+      load();
+    }
+  });
+
+  load();
 });
 
