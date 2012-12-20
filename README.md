@@ -1,9 +1,9 @@
 AppleSystemStatus
 =================
 
-Display Apple System Status
+Notify Apple System Status unofficially.
 
-Available at [Chrome Web Store]().
+Available at [Chrome Web Store](https://chrome.google.com/webstore/detail/apple-system-status-notif/oohakinbhdlbanjobhkioophpkiphmfg).
 
 Original Data from http://www.apple.com/jp/support/systemstatus/
 
