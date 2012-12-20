@@ -1,8 +1,8 @@
 {
-  "name": "AppleSystemStatus",
+  "name": "Apple System Status Notifier",
   "version": "1.0",
   "manifest_version": 2,
-  "description": "Display Apple System Status.",
+  "description": "Notify Apple System Status (unofficially).",
   "icons": {"128": "icon128.png"},
   "background": {
     "scripts": ["jquery-1.8.3.min.js", "eventPage.js"],
