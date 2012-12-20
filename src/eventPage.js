@@ -1,15 +1,34 @@
 function load() {
   $.getJSON("http://www.apple.com/support/systemstatus/data/system_status_en_US.js?_=" + new Date().getTime(),
       function(data) {
-        var html = "", i;
-        for (i = 0; i < data.detailedTimeline.length; i++) {
-          html += "<li>" + data.detailedTimeline[i].message + "</li>";
+        var i, j, details = data.detailedTimeline, now = new Date().getTime();
+
+        // Set default color.
+        chrome.browserAction.setBadgeBackgroundColor({ "color": "#999" });
+
+        // Red if any event is happening.
+        for (i = 0; i < details.length; i++) {
+          if (details[i].epochEndDate < now) {
+            continue;
+          }
+          chrome.browserAction.setBadgeBackgroundColor({ "color": "#F00" });
         }
-        $("ul").html(html);
-        if (data.detailedTimeline.length > 0) {
-          chrome.browserAction.setBadgeText({
-            "text": "" + data.detailedTimeline.length
-          });
+
+        if (details.length > 0) {
+          chrome.browserAction.setBadgeText({ "text": "" + details.length });
+        } else {
+          chrome.browserAction.setBadgeText({ "text": "" });
+        }
+
+        // Yellow if any dashboard has issue.
+        for (i in data.dashboard) {
+          if (!data.dashboard.hasOwnProperty(i)) continue;
+          for (j in data.dashboard[i]) {
+            if (!data.dashboard[i].hasOwnProperty(j)) continue;
+            if (data.dashboard[i][j].length > 0) {
+              chrome.browserAction.setBadgeBackgroundColor({ "color": "#FF0" });
+            }
+          }
         }
       });
 }
