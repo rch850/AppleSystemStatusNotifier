@@ -1,6 +1,6 @@
 {
   "name": "Apple System Status Notifier",
-  "version": "1.0",
+  "version": "1.1",
   "manifest_version": 2,
   "description": "Notify Apple System Status (unofficially).",
   "icons": {"128": "icon128.png"},
