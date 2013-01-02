@@ -20,13 +20,13 @@ function load() {
           chrome.browserAction.setBadgeText({ "text": "" });
         }
 
-        // Yellow if any dashboard has issue.
+        // Red if any dashboard has issue.
         for (i in data.dashboard) {
           if (!data.dashboard.hasOwnProperty(i)) continue;
           for (j in data.dashboard[i]) {
             if (!data.dashboard[i].hasOwnProperty(j)) continue;
             if (data.dashboard[i][j].length > 0) {
-              chrome.browserAction.setBadgeBackgroundColor({ "color": "#FF0" });
+              chrome.browserAction.setBadgeBackgroundColor({ "color": "#F00" });
             }
           }
         }
