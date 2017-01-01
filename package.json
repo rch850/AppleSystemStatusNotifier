@@ -9,10 +9,11 @@
   "dependencies": {
     "@types/chrome": "^0.0.37",
     "@types/zepto": "^1.0.28",
+    "tslint": "^4.2.0",
     "typescript": "^2.1.4"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tslint -c tslint.json 'src/**/*.ts' && tsc",
     "prepackage": "rm -r dist && mkdir -p dist",
     "package": "zip -x *.ts -r dist/app.zip src"
   }
