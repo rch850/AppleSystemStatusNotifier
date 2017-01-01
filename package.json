@@ -12,7 +12,7 @@
     "typescript": "^2.1.4"
   },
   "scripts": {
-    "build": "tsc src/eventPage.ts",
+    "build": "tsc",
     "prepackage": "rm -r dist && mkdir -p dist",
     "package": "zip -x *.ts -r dist/app.zip src"
   }
