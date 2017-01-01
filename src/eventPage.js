@@ -1,13 +1,8 @@
 function load() {
-    $.getJSON("http://www.apple.com/support/systemstatus/data/system_status_en_US.js?_=" + new Date().getTime(), function (data) {
-        var i, j, details = data.detailedTimeline, now = new Date().getTime();
-        // Set default color.
+    $.getJSON("http://www.apple.com/support/systemstatus/data/system_status_en_US.js?_=" + Date.now(), function (data) {
+        var details = data.detailedTimeline, now = Date.now();
         chrome.browserAction.setBadgeBackgroundColor({ "color": "#999" });
-        // Red if any event is happening.
-        for (i = 0; i < details.length; i++) {
-            if (details[i].epochEndDate < now) {
-                continue;
-            }
+        if (details.some(function (detail) { return detail.epochEndDate >= now; })) {
             chrome.browserAction.setBadgeBackgroundColor({ "color": "#F00" });
         }
         if (details.length > 0) {
@@ -16,14 +11,11 @@ function load() {
         else {
             chrome.browserAction.setBadgeText({ "text": "" });
         }
-        // Red if any dashboard has issue.
-        for (i in data.dashboard) {
-            if (!data.dashboard.hasOwnProperty(i))
-                continue;
-            for (j in data.dashboard[i]) {
-                if (!data.dashboard[i].hasOwnProperty(j))
-                    continue;
-                if (data.dashboard[i][j].length > 0) {
+        for (var _i = 0, _a = data.dashboard; _i < _a.length; _i++) {
+            var i = _a[_i];
+            for (var _b = 0, i_1 = i; _b < i_1.length; _b++) {
+                var j = i_1[_b];
+                if (j.length > 0) {
                     chrome.browserAction.setBadgeBackgroundColor({ "color": "#F00" });
                 }
             }
