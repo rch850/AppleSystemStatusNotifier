@@ -1,0 +1,14 @@
+{
+  "name": "AppleSystemStatusNotifier",
+  "version": "1.2.1",
+  "description": "A Chrome Extension to notify Apple System Status",
+  "main": "index.js",
+  "repository": "https://github.com/rch850/AppleSystemStatusNotifier.git",
+  "author": "rch850 <rich850@gmail.com>",
+  "license": "MIT",
+  "dependencies": {},
+  "scripts": {
+    "prepackage": "mkdir -p dist",
+    "package": "zip -r dist/app.zip src"
+  }
+}
