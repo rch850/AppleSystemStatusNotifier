@@ -6,9 +6,14 @@
   "repository": "https://github.com/rch850/AppleSystemStatusNotifier.git",
   "author": "rch850 <rich850@gmail.com>",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "@types/chrome": "^0.0.37",
+    "@types/zepto": "^1.0.28",
+    "typescript": "^2.1.4"
+  },
   "scripts": {
-    "prepackage": "mkdir -p dist",
-    "package": "zip -r dist/app.zip src"
+    "build": "tsc src/eventPage.ts",
+    "prepackage": "rm -r dist && mkdir -p dist",
+    "package": "zip -x *.ts -r dist/app.zip src"
   }
 }
