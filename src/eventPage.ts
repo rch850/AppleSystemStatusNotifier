@@ -1,6 +1,9 @@
+import axios from "axios";
+
 function load() {
-  $.getJSON("http://www.apple.com/support/systemstatus/data/system_status_en_US.js?_=" + Date.now(),
-      (data) => {
+  axios.get("http://www.apple.com/support/systemstatus/data/system_status_en_US.js?_=" + Date.now())
+      .then((response) => {
+        let data = response.data;
         let details = data.detailedTimeline, now = Date.now();
 
         // Set default color.

@@ -8,13 +8,16 @@
   "license": "MIT",
   "dependencies": {
     "@types/chrome": "^0.0.37",
-    "@types/zepto": "^1.0.28",
+    "awesome-typescript-loader": "^3.0.0-beta.17",
+    "axios": "^0.15.3",
+    "source-map-loader": "^0.1.5",
     "tslint": "^4.2.0",
-    "typescript": "^2.1.4"
+    "typescript": "^2.1.4",
+    "webpack": "^1.14.0"
   },
   "scripts": {
-    "build": "tslint -c tslint.json 'src/**/*.ts' && tsc",
+    "build": "tslint -c tslint.json 'src/**/*.ts' && webpack",
     "prepackage": "rm -r dist && mkdir -p dist",
-    "package": "zip -x *.ts -r dist/app.zip src"
+    "package": "zip -x *.ts *.map -r dist/app.zip src"
   }
 }

@@ -5,7 +5,7 @@
   "description": "Notify Apple System Status (unofficially).",
   "icons": {"128": "icon128.png"},
   "background": {
-    "scripts": ["zepto.min.js", "eventPage.js"],
+    "scripts": ["eventPage.js"],
     "persistent": false
   },
   "browser_action": {

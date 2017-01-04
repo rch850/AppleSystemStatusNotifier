@@ -1,3 +1,7 @@
 {
+  "compileOnSave": false,
+  "compilerOptions": {
+    "removeComments": true
+  },
   "include": ["src/*.ts"]
 }
