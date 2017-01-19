@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Apple System Status Notifier</title>
+    <style>
+    body {
+      overflow: hidden;
+      margin: 0;
+      padding: 1em;
+      background: white;
+    }
+    h1 {
+      font-size: 120%;
+    }
+    a {
+      text-decoration: none;
+    }
+    div {
+      cursor: pointer;
+      padding: 1px 3px;
+      font-family: sans-serif;
+      width: 300px;
+      border-radius: 3px;
+    }
+    div:hover {
+      background: #eee;
+    }
+    </style>
+    <script src="popup.js"></script>
+  </head>
+  <body>
+    <h1>Apple System Status Notifier</h1>
+    <div><a href="http://www.apple.com/support/systemstatus/" target="_blank">Apple Services, Stores, and iCloud <span id="count"></span></a></div>
+    <!-- <div><a href="https://developer.apple.com/system-status/" target="_blank">Developer System Status Page (<span id="countDev">0</span>)</a></div> -->
+  </body>
+</html>

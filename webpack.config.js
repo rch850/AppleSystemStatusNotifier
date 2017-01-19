@@ -1,7 +1,10 @@
 module.exports = {
-  entry: "./src/eventPage.ts",
+  entry: {
+    eventPage: "./src/eventPage.ts",
+    popup: "./src/popup.ts"
+  },
   output: {
-    filename: "./src/eventPage.js"
+    filename: "./src/[name].js"
   },
   devtool: "source-map",
   resolve: {

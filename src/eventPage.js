@@ -51,30 +51,40 @@
 	        .then(function (response) {
 	        var data = response.data;
 	        var details = data.detailedTimeline, now = Date.now();
-	        chrome.browserAction.setBadgeBackgroundColor({ "color": "#999" });
-	        if (details.some(function (detail) { return detail.epochEndDate >= now; })) {
-	            chrome.browserAction.setBadgeBackgroundColor({ "color": "#F00" });
-	        }
-	        if (details.length > 0) {
-	            chrome.browserAction.setBadgeText({ "text": "" + details.length });
-	        }
-	        else {
-	            chrome.browserAction.setBadgeText({ "text": "" });
-	        }
+	        var hasOngoingEvent = details.some(function (detail) { return detail.epochEndDate >= now; });
+	        var numEvents = details.length;
+	        var numDashboardIssues = 0;
 	        for (var _i = 0, _a = data.dashboard; _i < _a.length; _i++) {
 	            var i = _a[_i];
 	            for (var _b = 0, i_1 = i; _b < i_1.length; _b++) {
 	                var j = i_1[_b];
 	                if (j.length > 0) {
-	                    chrome.browserAction.setBadgeBackgroundColor({ "color": "#F00" });
+	                    numDashboardIssues += 1;
 	                }
 	            }
 	        }
+	        return {
+	            hasOngoingEvent: hasOngoingEvent,
+	            numDashboardIssues: numDashboardIssues,
+	            numEvents: numEvents
+	        };
+	    }).then(function (result) {
+	        chrome.storage.local.set({ status: result });
+	        chrome.storage.local.get("status", function (items) {
+	            console.log(items);
+	        });
+	        chrome.browserAction.setBadgeBackgroundColor({ "color": "#999" });
+	        if (result.hasOngoingEvent || result.numDashboardIssues > 0) {
+	            chrome.browserAction.setBadgeBackgroundColor({ "color": "#F00" });
+	        }
+	        if (result.numEvents > 0) {
+	            chrome.browserAction.setBadgeText({ "text": "" + result.numEvents });
+	        }
+	        else {
+	            chrome.browserAction.setBadgeText({ "text": "" });
+	        }
 	    });
 	}
-	chrome.browserAction.onClicked.addListener(function () {
-	    chrome.tabs.create({ url: "http://www.apple.com/support/systemstatus/" });
-	});
 	chrome.alarms.onAlarm.addListener(function (alarm) {
 	    if (alarm.name === "refresh") {
 	        load();
