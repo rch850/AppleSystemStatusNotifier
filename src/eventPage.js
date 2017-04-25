@@ -1,7 +1,9 @@
 function load() {
-    $.getJSON("http://www.apple.com/support/systemstatus/data/system_status_en_US.js?_=" + Date.now(), function (data) {
+    $.getJSON("https://www.apple.com/support/systemstatus/data/system_status_en_US.js?_=" + Date.now(), function (data) {
         var details = data.detailedTimeline, now = Date.now();
+        // Set default color.
         chrome.browserAction.setBadgeBackgroundColor({ "color": "#999" });
+        // Red if any event is happening.
         if (details.some(function (detail) { return detail.epochEndDate >= now; })) {
             chrome.browserAction.setBadgeBackgroundColor({ "color": "#F00" });
         }
@@ -11,6 +13,7 @@ function load() {
         else {
             chrome.browserAction.setBadgeText({ "text": "" });
         }
+        // Red if any dashboard has issue.
         for (var _i = 0, _a = data.dashboard; _i < _a.length; _i++) {
             var i = _a[_i];
             for (var _b = 0, i_1 = i; _b < i_1.length; _b++) {

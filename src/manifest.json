@@ -12,6 +12,6 @@
     "default_icon": "icon48.png"
   },
   "permissions": [
-    "alarms", "http://www.apple.com/"
+    "alarms", "https://www.apple.com/"
   ]
 }
