@@ -1,5 +1,3 @@
-declare var $: any;
-
 function load() {
   $.getJSON("https://www.apple.com/support/systemstatus/data/system_status_en_US.js?_=" + Date.now(),
       (data) => {
